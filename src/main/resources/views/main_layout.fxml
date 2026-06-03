@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.qltv.controllers.LayoutController"
+            prefHeight="900.0" prefWidth="1350.0">
+
+    <left>
+        <VBox fx:id="sidebar" styleClass="sidebar" spacing="10">
+            <Label text="QLTV" styleClass="sidebar-title"/>
+            
+            <Button text="Dashboard" onAction="#handleDashboard" styleClass="nav-button, nav-button-active"/>
+            <Button text="Members" onAction="#handleMembers" styleClass="nav-button"/>
+            <Button text="Teams" onAction="#handleTeams" styleClass="nav-button"/>
+            <Button text="Tournaments" onAction="#handleTournaments" styleClass="nav-button"/>
+            <Button text="Matches" onAction="#handleMatches" styleClass="nav-button"/>
+            <Button text="Sponsors" onAction="#handleSponsors" styleClass="nav-button"/>
+            
+            <Region VBox.vgrow="ALWAYS" /> <!-- Spacer -->
+
+            <Button text="My Profile" onAction="#handleProfile" styleClass="nav-button"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="nav-button" style="-fx-text-fill: #ef4444;"/>
+            </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area">
+            <!-- content dynamically loaded here -->
+        </StackPane>
+    </center>
+
+</BorderPane>

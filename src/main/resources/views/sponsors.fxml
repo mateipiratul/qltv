@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.qltv.controllers.SponsorController"
+      spacing="30"
+      style="-fx-padding: 10;">
+
+    <VBox HBox.hgrow="ALWAYS" spacing="20">
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="Sponsors Directory" styleClass="header-label" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="searchField" promptText="Search sponsors..." prefWidth="250" style="-fx-background-radius: 20;"/>
+        </HBox>
+        
+        <TableView fx:id="sponsorTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colName" text="Sponsor Name" prefWidth="200"/>
+                <TableColumn fx:id="colIndustry" text="Industry" prefWidth="150"/>
+                <TableColumn fx:id="colWebsite" text="Website" prefWidth="250"/>
+            </columns>
+        </TableView>
+
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Refresh" onAction="#onRefresh" styleClass="secondary-button"/>
+            <Button fx:id="addButton" text="Add New" onAction="#handleClear" styleClass="primary-button"/>
+            <Button fx:id="editButton" text="Edit Selected" onAction="#onEditSponsor" styleClass="secondary-button"/>
+            <Button fx:id="deleteButton" text="Delete Selected" onAction="#handleDelete" styleClass="danger-button"/>
+        </HBox>
+
+        <Pagination fx:id="pagination" pageCount="1" />
+    </VBox>
+
+    <VBox fx:id="formContainer" spacing="20" prefWidth="350" styleClass="form-container">
+        <Label text="Sponsor Information" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+        
+        <VBox spacing="8">
+            <Label text="Sponsor Name" styleClass="text-bold"/>
+            <TextField fx:id="nameField" promptText="e.g. Logitech G"/>
+        </VBox>
+        
+        <VBox spacing="8">
+            <Label text="Industry" styleClass="text-bold"/>
+            <TextField fx:id="industryField" promptText="e.g. Gaming Peripherals"/>
+        </VBox>
+        
+        <VBox spacing="8">
+            <Label text="Website" styleClass="text-bold"/>
+            <TextField fx:id="websiteField" promptText="https://..."/>
+        </VBox>
+        
+        <Region VBox.vgrow="ALWAYS" />
+
+        <HBox spacing="10">
+            <Button text="Save Sponsor" onAction="#handleSave" styleClass="primary-button" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+            <Button text="Clear" onAction="#handleClear" styleClass="secondary-button"/>
+        </HBox>
+        
+        <Button text="Remove Sponsor" onAction="#handleDelete" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10;" maxWidth="Infinity"/>
+    </VBox>
+
+</HBox>

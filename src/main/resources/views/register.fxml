@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.qltv.controllers.AuthController"
+      alignment="CENTER" spacing="20"
+      style="-fx-background-color: #f0f2f5;"
+      prefHeight="600.0" prefWidth="900.0">
+
+    <VBox spacing="25" alignment="CENTER" maxWidth="500" 
+          style="-fx-background-color: white; -fx-padding: 40; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 20, 0, 0, 10);">
+        
+        <Label text="Create Account" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+        
+        <GridPane hgap="20" vgap="20">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            
+            <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
+                <Label text="Username" styleClass="text-bold"/>
+                <TextField fx:id="regUsernameField" promptText="Choose a username" prefHeight="40"
+                           style="-fx-background-radius: 8; -fx-border-color: #e2e8f0; -fx-border-radius: 8;"/>
+            </VBox>
+            
+            <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
+                <Label text="Email Address" styleClass="text-bold"/>
+                <TextField fx:id="regEmailField" promptText="Enter your email" prefHeight="40"
+                           style="-fx-background-radius: 8; -fx-border-color: #e2e8f0; -fx-border-radius: 8;"/>
+            </VBox>
+            
+            <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Label text="Password" styleClass="text-bold"/>
+                <PasswordField fx:id="regPasswordField" promptText="Create password" prefHeight="40"
+                               style="-fx-background-radius: 8; -fx-border-color: #e2e8f0; -fx-border-radius: 8;"/>
+            </VBox>
+            
+            <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Label text="Confirm Password" styleClass="text-bold"/>
+                <PasswordField fx:id="regConfirmPasswordField" promptText="Repeat password" prefHeight="40"
+                               style="-fx-background-radius: 8; -fx-border-color: #e2e8f0; -fx-border-radius: 8;"/>
+            </VBox>
+        </GridPane>
+        
+        <StackPane>
+            <Button fx:id="registerButton" text="Create Account" onAction="#handleRegister" 
+                    styleClass="primary-button" maxWidth="Infinity" prefHeight="50"/>
+            <ProgressIndicator fx:id="regProgress" maxWidth="30" maxHeight="30" visible="false"/>
+        </StackPane>
+
+        
+        <HBox spacing="5" alignment="CENTER">
+            <Label text="Already have an account?" styleClass="text-muted"/>
+            <Hyperlink text="Sign In instead" onAction="#showLoginForm" style="-fx-text-fill: #3b82f6; -fx-font-weight: bold;"/>
+        </HBox>
+        
+        <Label fx:id="regErrorLabel" style="-fx-text-fill: #ef4444;" visible="false"/>
+    </VBox>
+</VBox>

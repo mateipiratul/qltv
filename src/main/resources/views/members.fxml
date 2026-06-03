@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.qltv.controllers.MemberController"
+      spacing="30"
+      style="-fx-padding: 10;">
+
+    <!-- List of Members -->
+    <VBox HBox.hgrow="ALWAYS" spacing="20">
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="Members Directory" styleClass="header-label" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="searchField" promptText="Search members..." prefWidth="250" style="-fx-background-radius: 20;"/>
+            <ComboBox fx:id="typeFilter" prefWidth="140" promptText="Filter" />
+        </HBox>
+        <TableView fx:id="memberTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colFavorite" text="★" prefWidth="40"/>
+                <TableColumn fx:id="colNickname" text="Nickname" prefWidth="150"/>
+                <TableColumn fx:id="colFullName" text="Full Name" prefWidth="250"/>
+                <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
+            </columns>
+        </TableView>
+        
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Refresh" onAction="#onRefresh" styleClass="secondary-button"/>
+            <Button fx:id="addButton" text="Add New" onAction="#onAddMember" styleClass="primary-button"/>
+            <Button fx:id="editButton" text="Edit Selected" onAction="#onEditMember" styleClass="secondary-button"/>
+            <Button fx:id="deleteButton" text="Delete Selected" onAction="#onDeleteMember" styleClass="danger-button"/>
+        </HBox>
+
+        <Pagination fx:id="pagination" pageCount="1" prefWidth="400" />
+    </VBox>
+
+    <!-- Detail Container -->
+    <VBox fx:id="detailContainer" prefWidth="450" spacing="20" styleClass="form-container">
+        <Label text="Member Profile" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+        <Separator/>
+        
+        <StackPane fx:id="dynamicContentArea" VBox.vgrow="ALWAYS">
+            <Label text="Select a member from the list to view their detailed profile and history." 
+                   wrapText="true" style="-fx-text-fill: #64748b; -fx-alignment: center;"/>
+        </StackPane>
+    </VBox>
+
+</HBox>

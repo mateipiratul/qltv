@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.qltv.controllers.MatchDetailController"
+      spacing="20"
+      prefWidth="1050.0" prefHeight="700.0"
+      style="-fx-background-color: #f8fafc; -fx-padding: 25;">
+
+    <!-- Header Section -->
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <VBox HBox.hgrow="ALWAYS">
+            <Label text="Match Map &amp; Round Statistics" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+            <Label fx:id="matchTitleLabel" text="Team A vs Team B" style="-fx-font-size: 16px; -fx-text-fill: #3b82f6; -fx-font-weight: bold;"/>
+        </VBox>
+        <Button text="Export Stats" onAction="#onExportStats" styleClass="secondary-button"/>
+        <Button text="Close" onAction="#handleClose" styleClass="secondary-button"/>
+    </HBox>
+    <Separator/>
+
+    <!-- Main Workspace -->
+    <HBox spacing="25" VBox.vgrow="ALWAYS">
+        
+        <!-- LEFT PANEL: Map Instances -->
+        <VBox spacing="15" prefWidth="300" minWidth="250" styleClass="form-container">
+            <Label text="Maps Played in Series" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #1e293b;"/>
+            <ListView fx:id="mapInstanceListView" VBox.vgrow="ALWAYS" />
+
+            <VBox fx:id="mapAdminControls" spacing="10" style="-fx-background-color: #f1f5f9; -fx-padding: 10; -fx-background-radius: 8;">
+                <Label text="Add Map Played" style="-fx-font-weight: bold; -fx-font-size: 12px;"/>
+                <ComboBox fx:id="mapComboBox" promptText="Select Map" maxWidth="Infinity"/>
+                <TextField fx:id="durationField" promptText="Duration (minutes)"/>
+                <Button text="Add Map to Series" onAction="#onAddMapInstance" styleClass="primary-button" maxWidth="Infinity"/>
+                <Button text="Delete Selected Map" onAction="#onDeleteMapInstance" style="-fx-background-color: #ef4444; -fx-text-fill: white;" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+
+        <!-- RIGHT PANEL: Rounds and Statistics -->
+        <VBox spacing="20" HBox.hgrow="ALWAYS">
+            
+            <!-- Map Instance Details & Rounds Selection -->
+            <HBox spacing="15" alignment="CENTER_LEFT" styleClass="form-container">
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Active Map Instance" style="-fx-font-size: 11px; -fx-text-fill: #64748b; -fx-font-weight: bold;"/>
+                    <Label fx:id="activeMapLabel" text="Please select a map on the left" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Rounds" style="-fx-font-size: 11px; -fx-text-fill: #64748b; -fx-font-weight: bold;"/>
+                    <HBox spacing="8">
+                        <ComboBox fx:id="roundComboBox" promptText="Round" prefWidth="100"/>
+                        <Button fx:id="addRoundButton" text="Add" onAction="#onAddRound" styleClass="primary-button"/>
+                        <Button fx:id="deleteRoundButton" text="Del" onAction="#onDeleteRound" style="-fx-background-color: #ef4444; -fx-text-fill: white;"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+
+            <!-- Player Statistics Table -->
+            <VBox spacing="10" VBox.vgrow="ALWAYS" styleClass="form-container">
+                <Label text="Individual Player Performance for Selected Round" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #1e293b;"/>
+                
+                <TableView fx:id="statsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colPlayer" text="Player" prefWidth="120"/>
+                        <TableColumn fx:id="colTeam" text="Team" prefWidth="120"/>
+                        <TableColumn fx:id="colKills" text="Kills" prefWidth="70"/>
+                        <TableColumn fx:id="colAssists" text="Assists" prefWidth="70"/>
+                        <TableColumn fx:id="colDamage" text="Damage" prefWidth="80"/>
+                        <TableColumn fx:id="colHeadshots" text="Headshots" prefWidth="90"/>
+                        <TableColumn fx:id="colFlashAssists" text="Flash Assists" prefWidth="100"/>
+                        <TableColumn fx:id="colDied" text="Died" prefWidth="70"/>
+                        <TableColumn fx:id="colKilledBy" text="Killed By" prefWidth="120"/>
+                    </columns>
+                </TableView>
+
+                <!-- Input form for editing stats -->
+                <HBox fx:id="statsAdminControls" spacing="10" alignment="BOTTOM_LEFT" style="-fx-background-color: #f1f5f9; -fx-padding: 10; -fx-background-radius: 8;">
+                    <VBox spacing="5" prefWidth="150">
+                        <Label text="Team" style="-fx-font-size: 10px;"/>
+                        <ComboBox fx:id="teamSelectionComboBox" promptText="Choose Team" maxWidth="Infinity"/>
+                    </VBox>
+                    <VBox spacing="5" prefWidth="150">
+                        <Label text="Player" style="-fx-font-size: 10px;"/>
+                        <ComboBox fx:id="playerComboBox" promptText="Choose Player" maxWidth="Infinity"/>
+                    </VBox>
+                    <VBox spacing="5" prefWidth="150">
+                        <Label text="Killed By" style="-fx-font-size: 10px;"/>
+                        <ComboBox fx:id="killerComboBox" promptText="None" maxWidth="Infinity"/>
+                    </VBox>
+                    <VBox spacing="5" prefWidth="60">
+                        <Label text="Kills" style="-fx-font-size: 10px;"/>
+                        <TextField fx:id="killsField" text="0"/>
+                    </VBox>
+                    <VBox spacing="5" prefWidth="60">
+                        <Label text="Assists" style="-fx-font-size: 10px;"/>
+                        <TextField fx:id="assistsField" text="0"/>
+                    </VBox>
+                    <VBox spacing="5" prefWidth="70">
+                        <Label text="Damage" style="-fx-font-size: 10px;"/>
+                        <TextField fx:id="damageField" text="0"/>
+                    </VBox>
+                    <VBox spacing="5" prefWidth="70">
+                        <Label text="Headshots" style="-fx-font-size: 10px;"/>
+                        <TextField fx:id="hsField" text="0"/>
+                    </VBox>
+                    <VBox spacing="5" prefWidth="80">
+                        <Label text="Flash Ast" style="-fx-font-size: 10px;"/>
+                        <TextField fx:id="flashField" text="0"/>
+                    </VBox>
+                    <VBox spacing="5" alignment="CENTER" prefHeight="40">
+                        <CheckBox fx:id="diedCheckBox" text="Died"/>
+                    </VBox>
+                    <Button text="Save Stats" onAction="#onSavePlayerStats" styleClass="primary-button"/>
+                </HBox>
+            </VBox>
+
+        </VBox>
+
+    </HBox>
+
+</VBox>

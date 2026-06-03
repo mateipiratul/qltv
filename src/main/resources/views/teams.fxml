@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.qltv.controllers.TeamController"
+      spacing="30"
+      style="-fx-padding: 10;">
+    
+    <VBox HBox.hgrow="ALWAYS" spacing="20">
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="Teams Management" styleClass="header-label" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="searchField" promptText="Search teams..." prefWidth="250" style="-fx-background-radius: 20;"/>
+        </HBox>
+        
+        <TableView fx:id="teamTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colFavorite" text="★" prefWidth="40"/>
+                <TableColumn fx:id="colName" text="Team Name" prefWidth="200"/>
+                <TableColumn fx:id="colTag" text="Tag" prefWidth="100"/>
+                <TableColumn fx:id="colRank" text="Rank" prefWidth="100"/>
+                <TableColumn fx:id="colLogoUrl" text="Logo URL" prefWidth="250"/>
+            </columns>
+        </TableView>
+
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Refresh" onAction="#onRefresh" styleClass="secondary-button"/>
+            <Button text="Sort by Rank" onAction="#onSortByRank" styleClass="secondary-button"/>
+            <Button fx:id="addButton" text="Add New" onAction="#handleClear" styleClass="primary-button"/>
+            <Button fx:id="editButton" text="Edit Selected" onAction="#onEditTeam" styleClass="secondary-button"/>
+            <Button fx:id="deleteButton" text="Delete Selected" onAction="#handleDelete" styleClass="danger-button"/>
+        </HBox>
+
+        <Pagination fx:id="pagination" pageCount="1" />
+    </VBox>
+
+    <VBox fx:id="formContainer" spacing="20" prefWidth="400" styleClass="form-container">
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+            <VBox spacing="20">
+                <Label text="Team Details" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+
+                <VBox spacing="8">
+                    <Label text="Global Rank" styleClass="text-bold"/>
+                    <TextField fx:id="rankField"/>
+                </VBox>
+
+                <VBox spacing="8">
+                    <Label text="Team Name" styleClass="text-bold"/>
+                    <TextField fx:id="nameField"/>
+                </VBox>
+                
+                <VBox spacing="8">
+                    <Label text="Tag" styleClass="text-bold"/>
+                    <TextField fx:id="tagField"/>
+                </VBox>
+
+                <VBox spacing="8">
+                    <Label text="Logo URL" styleClass="text-bold"/>
+                    <TextField fx:id="logoUrlField" promptText="e.g. teams/navi.png"/>
+                </VBox>
+                
+                <Separator/>
+                <Label text="Current Roster" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+                <FlowPane fx:id="rosterFlowPane" hgap="10" vgap="10"/>
+
+                <Separator/>
+                <Label text="Contract History" style="-fx-font-weight: bold;"/>
+                <TableView fx:id="contractTable" prefHeight="150">
+                    <columns>
+                        <TableColumn fx:id="colMember" text="Member" prefWidth="120"/>
+                        <TableColumn fx:id="colStart" text="Started" prefWidth="100"/>
+                        <TableColumn fx:id="colEnd" text="Ended" prefWidth="100"/>
+                    </columns>
+                </TableView>
+
+                <Separator/>
+                <Label text="Active Sponsorships" style="-fx-font-weight: bold;"/>
+                <ListView fx:id="sponsorshipListView" prefHeight="100"/>
+                <HBox spacing="10">
+                    <Button fx:id="linkSponsorButton" text="Link Sponsor" onAction="#onLinkSponsor" styleClass="secondary-button" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="unlinkButton" text="Unlink" onAction="#onUnlinkSponsor" styleClass="danger-button"/>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+
+        <HBox spacing="10">
+            <Button text="Save Changes" onAction="#handleSave" styleClass="primary-button" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+            <Button text="Clear" onAction="#handleClear" styleClass="secondary-button"/>
+        </HBox>
+        
+        <Button text="Delete Team" onAction="#handleDelete" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10;" maxWidth="Infinity"/>
+    </VBox>
+
+</HBox>

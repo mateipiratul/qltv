@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.qltv.controllers.PlayerDetailController"
+          hgap="10" vgap="15">
+    
+    <columnConstraints>
+        <ColumnConstraints prefWidth="100"/>
+        <ColumnConstraints hgrow="ALWAYS"/>
+    </columnConstraints>
+
+    <Label text="Role:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+    <TextField fx:id="roleField" GridPane.rowIndex="0" GridPane.columnIndex="1" editable="false"/>
+
+    <Label text="Resolution:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+    <TextField fx:id="resolutionField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <Label text="Sensitivity:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+    <TextField fx:id="sensitivityField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    <Label text="Mouse DPI:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+    <TextField fx:id="dpiField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    
+    <!-- Admin Controls -->
+    <HBox fx:id="adminActions" spacing="10" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="2" visible="false">
+        <Button text="Update Profile" onAction="#onUpdateProfile" styleClass="primary-button" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+        <Button text="Add Contract" onAction="#onAddContract" styleClass="secondary-button" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <Label text="Contract History:" GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.columnSpan="2" style="-fx-font-weight: bold; -fx-padding: 10 0 0 0;"/>
+    <VBox GridPane.rowIndex="6" GridPane.columnIndex="0" GridPane.columnSpan="2" spacing="10">
+        <TableView fx:id="contractTable" prefHeight="150">
+            <columns>
+                <TableColumn fx:id="colTeam" text="Team" prefWidth="150"/>
+                <TableColumn fx:id="colStart" text="Started" prefWidth="100"/>
+                <TableColumn fx:id="colEnd" text="Ended" prefWidth="100"/>
+            </columns>
+        </TableView>
+        <Pagination fx:id="pagination" pageCount="1" />
+    </VBox>
+
+    <Label text="Recent Matches:" GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="2" style="-fx-font-weight: bold; -fx-padding: 10 0 0 0;"/>
+    <VBox GridPane.rowIndex="8" GridPane.columnIndex="0" GridPane.columnSpan="2" spacing="10">
+        <TableView fx:id="matchTable" prefHeight="150">
+            <columns>
+                <TableColumn fx:id="colTournament" text="Tournament" prefWidth="150"/>
+                <TableColumn fx:id="colDate" text="Date" prefWidth="100"/>
+                <TableColumn fx:id="colFormat" text="Format" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+</GridPane>
