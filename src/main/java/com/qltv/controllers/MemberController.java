@@ -19,18 +19,14 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -371,7 +367,7 @@ public class MemberController {
     }
 
     private void loadMemberDetailView(Member member) {
-        String fxmlPath = (member instanceof Coach) ? "/views/coach_details.fxml" : "/views/player_details.fxml";
+        String fxmlPath = (member instanceof Coach) ? "/views/personnel/coach_details.fxml" : "/views/personnel/player_details.fxml";
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent detailView = loader.load();

@@ -116,12 +116,12 @@ public class AuthController {
 
     @FXML
     private void showRegisterForm(ActionEvent event) {
-        switchScene(event, "/views/register.fxml");
+        switchScene(event, "/views/app_related/register.fxml");
     }
 
     @FXML
     private void showLoginForm(ActionEvent event) {
-        switchScene(event, "/views/login.fxml");
+        switchScene(event, "/views/app_related/login.fxml");
     }
 
     private void navigateToDashboard(ActionEvent event) {

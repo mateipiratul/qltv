@@ -12,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        URL fxmlLocation = getClass().getResource("/views/login.fxml");
+        URL fxmlLocation = getClass().getResource("/views/app_related/login.fxml");
         if (fxmlLocation == null) {
             System.err.println("Could not find login.fxml");
             return;

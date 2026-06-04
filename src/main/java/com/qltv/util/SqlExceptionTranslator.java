@@ -16,7 +16,7 @@ public class SqlExceptionTranslator {
         CUSTOM_ERROR_MAP.put(2292, "Cannot delete this record because it is being used by other parts of the system.");
         CUSTOM_ERROR_MAP.put(12899, "One of the fields contains too much text for the database limits.");
 
-        // Application-Specific Trigger Errors (from 03_triggers_audit.sql)
+        // Application-Specific Trigger Errors
         CUSTOM_ERROR_MAP.put(20010, "This team already has an active sponsorship that overlaps with the selected period.");
         CUSTOM_ERROR_MAP.put(20013, "The end date cannot be earlier than the start date.");
         CUSTOM_ERROR_MAP.put(20014, "Integrity check failed: either the player has an overlapping contract or the match is scheduled outside the tournament period.");
@@ -33,18 +33,15 @@ public class SqlExceptionTranslator {
     public static String translate(SQLException e) {
         int errorCode = Math.abs(e.getErrorCode());
         
-        // Check for specific ORA/Trigger codes
         if (CUSTOM_ERROR_MAP.containsKey(errorCode)) {
             return CUSTOM_ERROR_MAP.get(errorCode);
         }
 
-        // Fallback to the SQL state or raw message if it's readable
         String msg = e.getMessage();
         if (msg != null && msg.contains("ORA-")) {
-            // Clean up the Oracle prefix for common cases
             return msg.substring(msg.indexOf(":") + 1).trim();
         }
 
-        return "A database error occurred. Please contact the administrator.";
+        return "database error occurred";
     }
 }

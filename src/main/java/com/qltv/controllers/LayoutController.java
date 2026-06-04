@@ -79,7 +79,7 @@ public class LayoutController {
     @FXML
     private void handleLogout() {
         try {
-            URL fxmlLocation = getClass().getResource("/views/login.fxml");
+            URL fxmlLocation = getClass().getResource("/views/app_related/login.fxml");
             Parent loginView = FXMLLoader.load(fxmlLocation);
             Scene scene = contentArea.getScene();
             

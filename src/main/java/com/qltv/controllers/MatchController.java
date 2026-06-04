@@ -360,7 +360,7 @@ public class MatchController {
         if (selected == null) return;
         
         try {
-            URL fxmlLocation = getClass().getResource("/views/match_details.fxml");
+            URL fxmlLocation = getClass().getResource("/views/in_game/match_details.fxml");
             if (fxmlLocation == null) {
                 showAlertError("Error", "Could not find match_details.fxml");
                 return;
